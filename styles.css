@@ -24,10 +24,16 @@
 
 h1 {
   margin-top: 2rem;
-  font-size: 100px;
+  font-size: 75px;
   font-weight: 700;
   line-height: 120px;
   letter-spacing: -5px;
+}
+
+@media screen and (min-wdith: 768px) {
+  h1 {
+    font-size: 100px;
+  }
 }
 
 h2 {
@@ -130,8 +136,8 @@ select:focus {
 ***********************/
 .timer {
   margin: 3rem auto;
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
   background-color: var(--dark-accent);
   border-radius: 50%;
   padding: 1rem;
@@ -159,8 +165,8 @@ select:focus {
 
 .timer__time-left {
   position: absolute;
-  top: 30%;
-  left: 21%;
+  top: 28%;
+  left: 26%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,7 +175,7 @@ select:focus {
 .timer__controls {
   position: absolute;
   bottom: 25%;
-  left: 30%;
+  left: 28%;
 }
 
 .min-sec {
@@ -205,7 +211,7 @@ select:focus {
   border-radius: 25px;
   width: 600px;
   max-width: 80%;
-  height: 400px;
+  height: 350px;
   max-height: 80%;
 }
 
