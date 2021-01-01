@@ -1,0 +1,16 @@
+:root {
+  --primary-red: #f87070;
+  --primary-teal: #70f3f8;
+  --primary-purple: #d881f8;
+  --text-color: #d7e0ff;
+  --dark-background: #1e213f;
+  --light-background: #ffffff;
+  --dark-accent: #161932;
+  --light-accent: #eff1fa;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}

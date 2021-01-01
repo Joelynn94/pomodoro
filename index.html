@@ -5,30 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <link rel="stylesheet" href="styles.css">
   
-  <title>Frontend Mentor | Pomodoro app</title>
+  <title>Pomodoro app</title>
 </head>
 <body>
-  <div class="tabs">
-    <div class="tab__link" id="pomodoro"></div>
-    <div class="tab__link" id="short-break"></div>
-    <div class="tab__link" id="long-break"></div>
+  <h1>Pomodoro Timer</h1>
+
+  <!-- Control buttons -->
+  <div class="control__buttons">
+    <!-- Buttons -->
+    <button class="btn btn--state-active" id="pomodoro" aria-label="pomodoro">Pomodoro</button>
+    <button class="btn" id="short-break" aria-label="short-break">Short break</button>
+    <button class="btn" id="long-break" aria-label="long-break">Long break</button>
   </div>
 
-  start 
-  pause
-  restart
+  <!-- Timer -->
+  <div class="timer">
+    <div class="timer__controls">
+      <button class="timer__controls-btn" id="start" aria-label="play">Start</button>
+      <button class="timer__controls-btn" id="pause" aria-label="pause">Pause</button>
+      <button class="timer__controls-btn" id="restart" aria-label="restart">Restart</button>
+      <button class="timer__controls-btn" id="stop" aria-label="stop">Stop</button>
+    </div>
+    <!-- Minutes and seconds display -->
+    <div class="timer__time">
+      <p id="minutes">25</p>
+      <p id="seconds">00</p>
+    </div>
+  </div>
 
-  Settings
+  <!-- Settings (Modal) -->
+  <div class="settings">
+    <h2>Settings</h2>
 
-  Time (minutes)
-  pomodoro
-  short break
-  long break
+    <div class="settings__set-time">
+      <h3>Time (minutes)</h3>
+      <label for="pomodoro">Pomodoro</label>
+      <select name="pomodoro" id="pomodoro">
+        <option value="25">25</option>
+      </select>
+  
+      <label for="short-break">Short break</label>
+      <select name="short-break" id="short-break">
+        <option value="5">5</option>
+      </select>
+  
+      <label for="long-break">long break</label>
+      <select name="long-break" id="long-break">
+        <option value="15">15</option>
+      </select>
+    </div>
 
-  Font
-  Color
+  
+    <!-- Fonts -->
+    <div class="settings__fonts">
+      <h4>Font</h4>
+      <input type="checkbox" class="settings__font-picker" id="kumbh-sans"></input>
+      <input type="checkbox" class="settings__font-picker" id="roboto-slab"></input>
+      <input type="checkbox" class="settings__font-picker" id="space-mono"></input>
+    </div>
+    <!-- Colors -->
+    <div class="settings__colors">
+      <h4>Color</h4>
+      <input type="checkbox" class="settings__color-swatch" id="red"></input>
+      <input type="checkbox" class="settings__color-swatch" id="teal"></input>
+      <input type="checkbox" class="settings__color-swatch" id="purple"></input>
+    </div>
+    
+  
+    <button class="settings__apply-btn" id="apply" aria-label="apply">Apply</button>
+  </div>
 
-  Apply
+
 </body>
 </html>
