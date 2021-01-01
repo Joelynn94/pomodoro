@@ -113,13 +113,14 @@ button:hover {
   TIMER 
 ***********************/
 .timer {
-  margin: 1rem auto;
+  margin: 3rem auto;
   width: 400px;
   height: 400px;
   background-color: var(--dark-accent);
   border-radius: 50%;
   padding: 1rem;
   background-image: linear-gradient(to bottom right, #0e112a, #2e325a);
+  box-shadow: -40px -27px 42px 5px #2e325a;
 }
 
 .timer__circle-wrap {
@@ -157,4 +158,18 @@ button:hover {
 
 .min-sec {
   margin: 0;
+}
+
+/**********************
+  SETTINGS 
+***********************/
+.settings__icon button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.settings__icon button img {
+  margin-right: 0.25rem;
 }
