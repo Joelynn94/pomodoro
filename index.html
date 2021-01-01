@@ -37,7 +37,9 @@
           <h1 class="min-sec">17:59</h1>
         </div>
         <div class="timer__controls">
-          <button class="timer__controls-btn" id="start" aria-label="play">Start</button>
+          <button class="timer__controls-btn" id="start" aria-label="play">
+            <h3>Start</h3>
+          </button>
           <!-- <button class="timer__controls-btn" id="pause" aria-label="pause">Pause</button>
           <button class="timer__controls-btn" id="restart" aria-label="restart">Restart</button>
           <button class="timer__controls-btn" id="stop" aria-label="stop">Stop</button> -->
@@ -48,50 +50,60 @@
 
     <div class="settings__icon">
       <button>
-        <img src="./assets/icon-settings.svg" alt="settings gear icon" />Settings
+        <img  src="./assets/icon-settings.svg" alt="settings gear icon" />Settings
       </button>
     </div>
     <!-- Settings (Modal) -->
     <div class="settings">
-      <h2>Settings</h2>
-
-      <div class="settings__set-time">
-        <h4>Time (minutes)</h4>
-        <label for="pomodoro">Pomodoro</label>
-        <select name="pomodoro" id="pomodoro">
-          <option value="25">25</option>
-        </select>
-    
-        <label for="short-break">Short break</label>
-        <select name="short-break" id="short-break">
-          <option value="5">5</option>
-        </select>
-    
-        <label for="long-break">long break</label>
-        <select name="long-break" id="long-break">
-          <option value="15">15</option>
-        </select>
+      <div class="settings__inner">
+        <!-- Settings top -->
+        <div class="settings__top">
+          <h2>Settings</h2>
+          <button class="settings__close-btn" id="settings__close-btn">
+            <img src="./assets/icon-close.svg" alt="">
+          </button>
+        </div>
+        <!-- Settings body wrapper -->
+        <div class="settings__body-wrapper">
+          <!-- Settins time select -->
+          <div class="settings__set-time">
+            <h4>Time (minutes)</h4>
+            <label for="pomodoro">Pomodoro</label>
+            <select name="pomodoro" id="pomodoro">
+              <option value="25">25</option>
+            </select>
+            
+            <label for="short-break">Short break</label>
+            <select name="short-break" id="short-break">
+              <option value="5">5</option>
+            </select>
+            
+            <label for="long-break">long break</label>
+            <select name="long-break" id="long-break">
+              <option value="15">15</option>
+            </select>
+          </div>
+        
+          <!-- Fonts -->
+          <div class="settings__fonts">
+            <h4>Font</h4>
+            <input type="checkbox" class="settings__font-picker" id="kumbh-sans"></input>
+            <input type="checkbox" class="settings__font-picker" id="roboto-slab"></input>
+            <input type="checkbox" class="settings__font-picker" id="space-mono"></input>
+          </div>
+          <!-- Colors -->
+          <div class="settings__colors">
+            <h4>Color</h4>
+            <input type="checkbox" class="settings__color-swatch" id="red"></input>
+            <input type="checkbox" class="settings__color-swatch" id="teal"></input>
+            <input type="checkbox" class="settings__color-swatch" id="purple"></input>
+          </div>
+        
+          <button class="settings__apply-btn" id="apply" aria-label="apply">Apply</button>
+        </div>
       </div>
-
-    
-      <!-- Fonts -->
-      <div class="settings__fonts">
-        <h4>Font</h4>
-        <input type="checkbox" class="settings__font-picker" id="kumbh-sans"></input>
-        <input type="checkbox" class="settings__font-picker" id="roboto-slab"></input>
-        <input type="checkbox" class="settings__font-picker" id="space-mono"></input>
-      </div>
-      <!-- Colors -->
-      <div class="settings__colors">
-        <h4>Color</h4>
-        <input type="checkbox" class="settings__color-swatch" id="red"></input>
-        <input type="checkbox" class="settings__color-swatch" id="teal"></input>
-        <input type="checkbox" class="settings__color-swatch" id="purple"></input>
-      </div>
-      
-    
-      <button class="settings__apply-btn" id="apply" aria-label="apply">Apply</button>
     </div>
+    <div class="settings__overlay"></div>
   </main>
 
 </body>

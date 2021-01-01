@@ -41,7 +41,7 @@ h3 {
   font-weight: 700;
   line-height: 19px;
   letter-spacing: 15px;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 h4 {
@@ -49,7 +49,7 @@ h4 {
   font-weight: 700;
   line-height: 16px;
   letter-spacing: 5px;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 body {
@@ -79,6 +79,22 @@ button {
 button:hover {
   background-color: var(--primary-red);
   filter: brightness(120%);
+}
+
+select {
+  border: 1px solid var(--dark-background);
+  border-radius: 0;
+  font-weight: 400;
+  color: inherit;
+  padding: 11px 15px;
+  line-height: normal;
+  transition: border-color 0.2s ease, outline 0.2s ease;
+}
+
+select:focus {
+  box-shadow: 0 3px 4px rgba(var(--dark-background), 0.3) inset;
+  outline: 1px solid var(--dark-background);
+  outline-offset: -1px;
 }
 
 /**********************
@@ -153,7 +169,7 @@ button:hover {
 .timer__controls {
   position: absolute;
   bottom: 25%;
-  left: 42%;
+  left: 30%;
 }
 
 .min-sec {
@@ -172,4 +188,72 @@ button:hover {
 
 .settings__icon button img {
   margin-right: 0.25rem;
+}
+
+.settings {
+  z-index: 1010;
+
+  /* display: flex; */
+  display: none;
+  text-align: left;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--light-background);
+  color: var(--dark-accent);
+  border-radius: 25px;
+  width: 600px;
+  max-width: 80%;
+  height: 400px;
+  max-height: 80%;
+}
+
+/* .settings__overlay {
+  z-index: 1000;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+
+  background: rgba(0, 0, 0, 0.6);
+} */
+
+.settings__inner {
+  /* cover the modal */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* let it scroll */
+  overflow: auto;
+}
+
+.settings__top {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0.5rem 0;
+  padding: 20px 30px;
+  border-bottom: 1px solid #979797;
+}
+
+.settings__body-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+}
+
+.settings__set-time {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #979797;
+}
+
+.settings__set-time h4 {
+  margin-bottom: 1rem;
 }
