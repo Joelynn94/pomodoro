@@ -7,10 +7,154 @@
   --light-background: #ffffff;
   --dark-accent: #161932;
   --light-accent: #eff1fa;
+
+  --kumbhsans-font: 'Kumbh Sans', sans-serif;
+  --robotoslab-font: 'Roboto Slab', serif;
+  --spacemono-font: 'Space Mono', monospace;
 }
 
+/**********************
+  GENERAL STYLES
+***********************/
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  margin-top: 2rem;
+  font-size: 100px;
+  font-weight: 700;
+  line-height: 120px;
+  letter-spacing: -5px;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 34px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 15px;
+  text-transform: capitalize;
+}
+
+h4 {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 5px;
+  text-transform: capitalize;
+}
+
+body {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  background-color: var(--dark-background);
+  color: var(--text-color);
+}
+
+button {
+  margin: 0;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 26.5px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.75rem 0.75rem;
+  background-color: transparent;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+}
+
+button:hover {
+  background-color: var(--primary-red);
+  filter: brightness(120%);
+}
+
+/**********************
+  UTILITY CLASSES
+***********************/
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+/**********************
+  CONTROL BUTTONS
+***********************/
+.control__buttons {
+  background-color: var(--dark-accent);
+  margin: 2rem auto;
+  border-radius: 26.5px;
+  padding: 0.75rem;
+}
+
+.btn--state-active {
+  background-color: var(--primary-red);
+  color: var(--dark-background);
+}
+
+/**********************
+  TIMER 
+***********************/
+.timer {
+  margin: 1rem auto;
+  width: 400px;
+  height: 400px;
+  background-color: var(--dark-accent);
+  border-radius: 50%;
+  padding: 1rem;
+  background-image: linear-gradient(to bottom right, #0e112a, #2e325a);
+}
+
+.timer__circle-wrap {
+  position: relative;
+  background-color: var(--dark-accent);
+  background-color: var(--dark-accent);
+  border-radius: 50%;
+  padding: 0.25rem;
+}
+
+.timer__circle {
+  fill: none;
+  stroke: none;
+}
+
+.timer__path-elapsed {
+  stroke-width: 4px;
+  stroke: var(--primary-red);
+}
+
+.timer__time-left {
+  position: absolute;
+  top: 30%;
+  left: 21%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer__controls {
+  position: absolute;
+  bottom: 25%;
+  left: 42%;
+}
+
+.min-sec {
+  margin: 0;
 }
