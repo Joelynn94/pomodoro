@@ -65,43 +65,100 @@
         </div>
         <!-- Settings body wrapper -->
         <div class="settings__body-wrapper">
-          <!-- Settins time select -->
+          <!-- Settings time select -->
+          <h4>Time (minutes)</h4>
           <div class="settings__set-time">
-            <h4>Time (minutes)</h4>
+            <!-- Pomodoro time select -->
             <label for="pomodoro">Pomodoro</label>
-            <select name="pomodoro" id="pomodoro">
-              <option value="25">25</option>
-            </select>
-            
+            <div class="settings__set-time--select">
+              <select name="pomodoro" id="pomodoro">
+                <option value="25">25</option>
+                <option value="25">25</option>
+                <option value="25">25</option>
+              </select>
+              <svg class="up-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="7"><path id="svg" fill="none" stroke="#1E213F" stroke-opacity=".25" stroke-width="2" d="M1 6l6-4 6 4"/></svg>
+              <svg class="down-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="7"><path path id="svg" fill="none" stroke="#1E213F" stroke-opacity=".25" stroke-width="2" d="M1 1l6 4 6-4"/></svg>
+            </div>
+            <!-- END Pomodoro time select -->
+            <!-- Short break time select -->
             <label for="short-break">Short break</label>
-            <select name="short-break" id="short-break">
-              <option value="5">5</option>
-            </select>
-            
-            <label for="long-break">long break</label>
-            <select name="long-break" id="long-break">
-              <option value="15">15</option>
-            </select>
+            <div class="settings__set-time--select">
+              <select name="short-break" id="short-break">
+                <option value="5">5</option>
+              </select>
+              <svg class="up-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="7"><path fill="none" stroke="#1E213F" stroke-opacity=".25" stroke-width="2" d="M1 6l6-4 6 4"/></svg>
+              <svg class="down-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="7"><path fill="none" stroke="#1E213F" stroke-opacity=".25" stroke-width="2" d="M1 1l6 4 6-4"/></svg>
+            </div>
+            <!-- END Short break time select -->
+            <!-- Long break time select -->
+            <label for="long-break">Long break</label>
+            <div class="settings__set-time--select">
+              <select name="long-break" id="long-break">
+                <option value="15">15</option>
+              </select>
+              <svg class="up-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="7"><path fill="none" stroke="#1E213F" stroke-opacity=".25" stroke-width="2" d="M1 6l6-4 6 4"/></svg>
+              <svg class="down-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="7"><path fill="none" stroke="#1E213F" stroke-opacity=".25" stroke-width="2" d="M1 1l6 4 6-4"/></svg>
+            </div>
+            <!-- END Long break time select -->
           </div>
+          <!-- END Settings time select -->
         
           <!-- Fonts -->
-          <div class="settings__fonts">
-            <h4>Font</h4>
-            <input type="checkbox" class="settings__font-picker" id="kumbh-sans"></input>
-            <input type="checkbox" class="settings__font-picker" id="roboto-slab"></input>
-            <input type="checkbox" class="settings__font-picker" id="space-mono"></input>
+          <div class="settings__fonts-wrapper">
+            <h4 class="settings__fonts-heading">Font</h4>
+            <div class="settings__fonts">
+              <div class="checkbox">
+                <label class="checkbox-container">
+                  <input type="checkbox" class="settings__font-picker" />
+                  <span class="font-checkmark font" id="kumbh-sans"></span>
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <label class="checkbox-container">
+                  <input type="checkbox" class="settings__font-picker" />
+                  <span class="font-checkmark font" id="roboto-slab"></span>
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <label class="checkbox-container">
+                  <input type="checkbox" class="settings__font-picker" />
+                  <span class="font-checkmark font" id="space-mono"></span>
+                </label>
+              </div>
+            </div>
           </div>
           <!-- Colors -->
-          <div class="settings__colors">
-            <h4>Color</h4>
-            <input type="checkbox" class="settings__color-swatch" id="red"></input>
-            <input type="checkbox" class="settings__color-swatch" id="teal"></input>
-            <input type="checkbox" class="settings__color-swatch" id="purple"></input>
+          <div class="settings__colors-wrapper">
+            <h4 class="settings__colors-heading">Color</h4>
+            <div class="settings__colors">
+              <div class="checkbox">
+                <label class="checkbox-container">
+                  <input type="checkbox" class="settings__color-swatch" id="red" />
+                  <span class="color-checkmark red"></span>
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <label class="checkbox-container">
+                  <input type="checkbox" class="settings__color-swatch" id="teal" />
+                  <span class="color-checkmark teal"></span>
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <label class="checkbox-container">
+                  <input type="checkbox" class="settings__color-swatch" id="purple" />
+                  <span class="color-checkmark purple"></span>
+                </label>
+              </div>
+            </div>
           </div>
-        
-          <button class="settings__apply-btn" id="apply" aria-label="apply">Apply</button>
+          
         </div>
       </div>
+      <button class="settings__apply-btn" id="apply" aria-label="apply">Apply</button>
     </div>
     <div class="settings__overlay"></div>
   </main>
