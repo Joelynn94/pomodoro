@@ -452,7 +452,7 @@ select option {
   overflow: hidden;
   top: 50%;
   left: 50%;
-  width: 90%;
+  width: 100%;
   max-width: 600px;
   /* Puts the modal box in the middle */
   transform: translate(-50%, -50%);
@@ -520,7 +520,7 @@ select option {
 .settings__apply-btn {
   z-index: 5000;
   position: absolute;
-  bottom: 14%;
+  bottom: 3%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--primary-red);
