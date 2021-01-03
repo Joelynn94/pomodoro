@@ -436,7 +436,7 @@ select option {
   left: 0;
   right: 0;
   bottom: 0;
-  transform: translate(-2%, 0);
+  transform: translate(0, 0);
 }
 
 .settings.show-modal {
