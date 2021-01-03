@@ -392,22 +392,32 @@ select option {
 }
 
 .settings {
-  z-index: 1010;
-
-  display: flex;
-  /* display: none; */
-  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.settings.show-modal {
+  display: flex;
+}
+
+.settings__inner {
   background-color: var(--light-background);
   color: var(--dark-accent);
   border-radius: 25px;
-  width: 600px;
-  max-width: 80%;
-  height: 550px;
-  max-height: 80%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  max-width: 100%;
+  width: 500px;
+  /* Puts the modal box in the middle */
+  transform: translate(-50%, -50%);
 }
 
 /* .settings__overlay {
@@ -422,18 +432,6 @@ select option {
 
   background: rgba(0, 0, 0, 0.6);
 } */
-
-.settings__inner {
-  /* cover the modal */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  /* let it scroll */
-  overflow: auto;
-}
 
 .settings__top {
   display: flex;
