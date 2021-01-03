@@ -184,8 +184,8 @@ select option {
 ***********************/
 /* Checkbox border on hover */
 .checkbox {
-  width: 33px;
-  height: 33px;
+  width: 45px;
+  height: 45px;
   padding: 0.15rem;
   position: relative;
   border-radius: 50%;
@@ -227,8 +227,8 @@ select option {
   position: absolute;
   top: 0;
   left: 0;
-  height: 25px;
-  width: 25px;
+  height: 35px;
+  width: 35px;
   border-radius: 50%;
   background-color: var(--light-accent);
 }
