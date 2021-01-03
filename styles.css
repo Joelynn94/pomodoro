@@ -467,6 +467,10 @@ select option {
   border-bottom: 1px solid #e3e1e1;
 }
 
+.settings__close-btn {
+  display: flex;
+}
+
 .settings__body-wrapper {
   display: flex;
   flex-direction: column;
@@ -520,7 +524,7 @@ select option {
 .settings__apply-btn {
   z-index: 5000;
   position: absolute;
-  bottom: 13%;
+  bottom: 16%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--primary-red);
