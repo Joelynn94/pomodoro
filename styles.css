@@ -454,7 +454,7 @@ select option {
   left: 50%;
   width: 100%;
   max-width: 600px;
-  height: 600px;
+  height: 530px;
   /* Puts the modal box in the middle */
   transform: translate(-50%, -50%);
 }
@@ -520,7 +520,7 @@ select option {
 .settings__apply-btn {
   z-index: 5000;
   position: absolute;
-  bottom: 9%;
+  bottom: 13%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--primary-red);
