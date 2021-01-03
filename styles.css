@@ -36,7 +36,7 @@ h1 {
   letter-spacing: -5px;
 }
 
-@media screen and (min-wdith: 768px) {
+@media screen and (min-width: 768px) {
   h1 {
     font-size: 100px;
   }
@@ -86,6 +86,9 @@ button {
   font-size: 14px;
   font-weight: 700;
   line-height: 19px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
 }
 
 @media screen and (min-width: 768px) {
@@ -331,13 +334,20 @@ select option {
 ***********************/
 .timer {
   margin: 3rem auto;
-  width: 350px;
-  height: 350px;
+  width: 320px;
+  height: 320px;
   background-color: var(--dark-accent);
   border-radius: 50%;
   padding: 1rem;
   background-image: linear-gradient(to bottom right, #0e112a, #2e325a);
   box-shadow: -40px -27px 42px 5px #2e325a;
+}
+
+@media screen and (min-width: 768px) {
+  .timer {
+    width: 400px;
+    height: 400px;
+  }
 }
 
 .timer__circle-wrap {
@@ -360,17 +370,44 @@ select option {
 
 .timer__time-left {
   position: absolute;
-  top: 28%;
-  left: 26%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+@media screen and (min-width: 768px) {
+  .timer__time-left {
+    font-size: 100px;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
 }
 
 .timer__controls {
   position: absolute;
-  bottom: 25%;
-  left: 28%;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 165%);
+}
+
+@media screen and (min-width: 768px) {
+  .timer__controls {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 190%);
+  }
+}
+
+.timer__controls-btn {
+  display: flex;
+  justify-content: center;
+  line-height: 16px;
+  letter-spacing: 15px;
+  text-indent: 15px;
+  text-transform: uppercase;
 }
 
 .min-sec {
@@ -399,6 +436,7 @@ select option {
   left: 0;
   right: 0;
   bottom: 0;
+  transform: translate(-2%, 0);
 }
 
 .settings.show-modal {
@@ -414,24 +452,12 @@ select option {
   overflow: hidden;
   top: 50%;
   left: 50%;
-  max-width: 100%;
-  width: 500px;
+  width: 90%;
+  max-width: 600px;
   /* Puts the modal box in the middle */
   transform: translate(-50%, -50%);
+  margin: 0 auto;
 }
-
-/* .settings__overlay {
-  z-index: 1000;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 50;
-
-  background: rgba(0, 0, 0, 0.6);
-} */
 
 .settings__top {
   display: flex;
@@ -494,10 +520,16 @@ select option {
 .settings__apply-btn {
   z-index: 5000;
   position: absolute;
-  bottom: -8%;
+  bottom: 14%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--primary-red);
   color: var(--light-accent);
   padding: 0.75rem 2.75rem;
+}
+
+@media screen and (min-width: 768px) {
+  .settings__apply-btn {
+    bottom: 14%;
+  }
 }
