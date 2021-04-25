@@ -538,7 +538,7 @@ input[type='radio']:focus {
 .settings__apply-btn {
   z-index: 5000;
   position: absolute;
-  bottom: 12%;
+  bottom: 10.5%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--primary-red);
@@ -548,6 +548,6 @@ input[type='radio']:focus {
 
 @media (min-width: 768px) {
   .settings__apply-btn {
-    bottom: 21%;
+    bottom: 20%;
   }
 }
