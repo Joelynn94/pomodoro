@@ -173,8 +173,8 @@ input {
 ***********************/
 /* radio border on hover */
 .radio {
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   padding: 0.15rem;
   position: relative;
   border-radius: 50%;
@@ -195,10 +195,6 @@ input {
   transform: translate(-50%, -50%);
   cursor: pointer;
   font-size: 22px;
-  -webkit-user-input: none;
-  -moz-user-input: none;
-  -ms-user-input: none;
-  user-input: none;
 }
 
 /* Hide the browser's default radio */
@@ -216,8 +212,8 @@ input {
   position: absolute;
   top: 0;
   left: 0;
-  height: 34px;
-  width: 34px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   background-color: var(--light-accent);
 }
@@ -258,8 +254,8 @@ input[type='radio']:focus {
 
 /* Style the color-checkmark/indicator */
 .radio-container .color-checkmark:after {
-  left: 14px;
-  top: 9px;
+  left: 16px;
+  top: 12px;
   width: 5px;
   height: 10px;
   border: solid var(--dark-accent);
