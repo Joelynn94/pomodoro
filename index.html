@@ -1,167 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&family=Roboto+Slab:wght@400;700&family=Space+Mono:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&family=Roboto+Slab:wght@400;700&family=Space+Mono:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  <link rel="stylesheet" href="styles.css">
-  
-  <title>Pomodoro app</title>
-</head>
-<body>
-  <main class="container">
-    <h1>Pomodoro Timer</h1>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="styles.css" />
 
-    <!-- Control buttons -->
-    <div class="control__buttons">
-      <!-- Buttons -->
-      <button class="btn btn--state-active" id="pomodoro" aria-label="pomodoro">Pomodoro</button>
-      <button class="btn" id="short-break" aria-label="short-break">Short break</button>
-      <button class="btn" id="long-break" aria-label="long-break">Long break</button>
-    </div>
+    <title>Pomodoro app</title>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Pomodoro Timer</h1>
 
-    <!-- Timer -->
-    <div class="timer">
-      <div class="timer__circle-wrap">
-        <svg class="timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <g class="timer__circle">
-            <circle class="timer__path-elapsed" cx="50" cy="50" r="45" />
-          </g>
-        </svg>
-        <!-- Minutes and seconds display -->
-        <div class="timer__time-left" id="timer__time-left">
-          <h1 class="min-sec">17:59</h1>
-        </div>
-        <div class="timer__controls">
-          <button class="timer__controls-btn" id="start" aria-label="play">
-            Start
-          </button>
-          <!-- <button class="timer__controls-btn" id="pause" aria-label="pause">Pause</button>
+      <!-- Control buttons -->
+      <div class="control__buttons">
+        <!-- Buttons -->
+        <button
+          class="btn btn--state-active"
+          id="pomodoro"
+          aria-label="pomodoro"
+        >
+          Pomodoro
+        </button>
+        <button class="btn" id="short-break" aria-label="short-break">
+          Short break
+        </button>
+        <button class="btn" id="long-break" aria-label="long-break">
+          Long break
+        </button>
+      </div>
+
+      <!-- Timer -->
+      <div class="timer">
+        <div class="timer__circle-wrap">
+          <svg
+            class="timer__svg"
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g class="timer__circle">
+              <circle
+                class="timer__path-elapsed"
+                cx="50"
+                cy="50"
+                r="45"
+                style="
+                  stroke-dasharray: 339.292;
+                  stroke-dashoffset: 339.292;
+                  stroke-linecap: round;
+                "
+              />
+            </g>
+          </svg>
+          <!-- Minutes and seconds display -->
+          <div class="timer__time-left" id="timer__time-left">
+            <h1 class="min-sec">17:59</h1>
+          </div>
+          <div class="timer__controls">
+            <button class="timer__controls-btn" id="start" aria-label="play">
+              Start
+            </button>
+            <!-- <button class="timer__controls-btn" id="pause" aria-label="pause">Pause</button>
           <button class="timer__controls-btn" id="restart" aria-label="restart">Restart</button>
           <button class="timer__controls-btn" id="stop" aria-label="stop">Stop</button> -->
-        </div>
-      </div>  
-    </div>
-
-
-    <div class="settings__icon">
-      <button id="js-settings__icon--toggle">
-        <img  src="./assets/icon-settings.svg" alt="settings gear icon" />Settings
-      </button>
-    </div>
-    <!-- Settings (Modal) -->
-    <div class="settings" id="js-settings__modal">
-      <div class="settings__inner">
-        <!-- Settings top -->
-        <div class="settings__top">
-          <h2>Settings</h2>
-          <button class="settings__close-btn" id="settings__close-btn">
-            <img src="./assets/icon-close.svg" alt="">
-          </button>
-        </div>
-        <!-- Settings body wrapper -->
-        <div class="settings__body-wrapper">
-          <!-- Settings time select -->
-          <h4>Time (minutes)</h4>
-          <div class="settings__set-time">
-            <!-- Pomodoro time select -->
-            <label for="pomodoro">Pomodoro</label>
-            <div class="settings__set-time--select">
-              <select name="pomodoro" id="pomodoro">
-                <option value="25">25</option>
-                <option value="25">25</option>
-                <option value="25">25</option>
-              </select>
-              <svg class="up-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="7"><path id="svg" fill="none" stroke="#1E213F" stroke-opacity=".25" stroke-width="2" d="M1 6l6-4 6 4"/></svg>
-              <svg class="down-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="7"><path path id="svg" fill="none" stroke="#1E213F" stroke-opacity=".25" stroke-width="2" d="M1 1l6 4 6-4"/></svg>
-            </div>
-            <!-- END Pomodoro time select -->
-            <!-- Short break time select -->
-            <label for="short-break">Short break</label>
-            <div class="settings__set-time--select">
-              <select name="short-break" id="short-break">
-                <option value="5">5</option>
-              </select>
-              <svg class="up-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="7"><path fill="none" stroke="#1E213F" stroke-opacity=".25" stroke-width="2" d="M1 6l6-4 6 4"/></svg>
-              <svg class="down-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="7"><path fill="none" stroke="#1E213F" stroke-opacity=".25" stroke-width="2" d="M1 1l6 4 6-4"/></svg>
-            </div>
-            <!-- END Short break time select -->
-            <!-- Long break time select -->
-            <label for="long-break">Long break</label>
-            <div class="settings__set-time--select">
-              <select name="long-break" id="long-break">
-                <option value="15">15</option>
-              </select>
-              <svg class="up-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="7"><path fill="none" stroke="#1E213F" stroke-opacity=".25" stroke-width="2" d="M1 6l6-4 6 4"/></svg>
-              <svg class="down-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="7"><path fill="none" stroke="#1E213F" stroke-opacity=".25" stroke-width="2" d="M1 1l6 4 6-4"/></svg>
-            </div>
-            <!-- END Long break time select -->
           </div>
-          <!-- END Settings time select -->
-        
-          <!-- Fonts -->
-          <div class="settings__fonts-wrapper">
-            <h4 class="settings__fonts-heading">Font</h4>
-            <div class="settings__fonts">
-              <div class="checkbox">
-                <label class="checkbox-container">
-                  <input type="checkbox" class="settings__font-picker" />
-                  <span class="font-checkmark font" id="kumbh-sans"></span>
-                </label>
-              </div>
-
-              <div class="checkbox">
-                <label class="checkbox-container">
-                  <input type="checkbox" class="settings__font-picker" />
-                  <span class="font-checkmark font" id="roboto-slab"></span>
-                </label>
-              </div>
-
-              <div class="checkbox">
-                <label class="checkbox-container">
-                  <input type="checkbox" class="settings__font-picker" />
-                  <span class="font-checkmark font" id="space-mono"></span>
-                </label>
-              </div>
-            </div>
-          </div>
-          <!-- Colors -->
-          <div class="settings__colors-wrapper">
-            <h4 class="settings__colors-heading">Color</h4>
-            <div class="settings__colors">
-              <div class="checkbox">
-                <label class="checkbox-container">
-                  <input type="checkbox" class="settings__color-swatch" id="red" />
-                  <span class="color-checkmark red"></span>
-                </label>
-              </div>
-
-              <div class="checkbox">
-                <label class="checkbox-container">
-                  <input type="checkbox" class="settings__color-swatch" id="teal" />
-                  <span class="color-checkmark teal"></span>
-                </label>
-              </div>
-
-              <div class="checkbox">
-                <label class="checkbox-container">
-                  <input type="checkbox" class="settings__color-swatch" id="purple" />
-                  <span class="color-checkmark purple"></span>
-                </label>
-              </div>
-            </div>
-          </div>
-          
         </div>
       </div>
-      <button class="settings__apply-btn" id="apply" aria-label="apply">Apply</button>
-    </div>
-  </main>
 
-  <script src="./index.js"></script>
-</body>
+      <div class="settings__icon">
+        <button id="js-settings__icon--toggle">
+          <img
+            src="./assets/icon-settings.svg"
+            alt="settings gear icon"
+          />Settings
+        </button>
+      </div>
+      <!-- Settings (Modal) -->
+      <div class="settings" id="js-settings__modal">
+        <div class="settings__inner">
+          <!-- Settings top -->
+          <div class="settings__top">
+            <h2>Settings</h2>
+            <button class="settings__close-btn" id="settings__close-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14">
+                <path
+                  fill="#1E213F"
+                  fill-rule="evenodd"
+                  d="M11.95.636l1.414 1.414L8.414 7l4.95 4.95-1.414 1.414L7 8.414l-4.95 4.95L.636 11.95 5.586 7 .636 2.05 2.05.636 7 5.586l4.95-4.95z"
+                  opacity=".5"
+                />
+              </svg>
+            </button>
+          </div>
+          <!-- Settings body wrapper -->
+          <div class="settings__body-wrapper">
+            <!-- Settings time input -->
+            <h4>Time (minutes)</h4>
+            <div class="settings__set-time">
+              <!-- Pomodoro time input -->
+              <div class="input-grid">
+                <label for="pomodoro">Pomodoro</label>
+                <div class="settings__set-time--input">
+                  <input type="number" name="pomodoro" id="pomodoro">
+                  </input>
+                  <div class="up-down-svg">
+                    <svg
+                      class="up-arrow"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="7"
+                    >
+                      <path
+                        id="svg"
+                        fill="none"
+                        stroke="#1E213F"
+                        stroke-opacity=".25"
+                        stroke-width="2"
+                        d="M1 6l6-4 6 4"
+                      />
+                    </svg>
+                    <svg
+                      class="down-arrow"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="7"
+                    >
+                      <path
+                        path
+                        id="svg"
+                        fill="none"
+                        stroke="#1E213F"
+                        stroke-opacity=".25"
+                        stroke-width="2"
+                        d="M1 1l6 4 6-4"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <!-- END Pomodoro time input -->
+              <!-- Short break time input -->
+              <div class="input-grid">
+                <label for="short-break">Short break</label>
+                <div class="settings__set-time--input">
+                  <input type="number" name="short-break" id="short-break">
+                  </input>
+                  <div class="up-down-svg">
+                    <svg
+                    class="up-arrow"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="7"
+                  >
+                    <path
+                      fill="none"
+                      stroke="#1E213F"
+                      stroke-opacity=".25"
+                      stroke-width="2"
+                      d="M1 6l6-4 6 4"
+                    />
+                  </svg>
+                  <svg
+                    class="down-arrow"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="7"
+                  >
+                    <path
+                      fill="none"
+                      stroke="#1E213F"
+                      stroke-opacity=".25"
+                      stroke-width="2"
+                      d="M1 1l6 4 6-4"
+                    />
+                  </svg>
+                  </div>
+                </div>
+              </div>
+              <!-- END Short break time input -->
+              <!-- Long break time input -->
+              <div class="input-grid">
+                <label for="long-break">Long break</label>
+                <div class="settings__set-time--input">
+                  <input type="number" name="long-break" id="long-break">
+                  </input>
+                  <div class="up-down-svg">
+                    <svg
+                      class="up-arrow"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="7"
+                    >
+                      <path
+                        fill="none"
+                        stroke="#1E213F"
+                        stroke-opacity=".25"
+                        stroke-width="2"
+                        d="M1 6l6-4 6 4"
+                      />
+                    </svg>
+                    <svg
+                      class="down-arrow"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="7"
+                    >
+                      <path
+                        fill="none"
+                        stroke="#1E213F"
+                        stroke-opacity=".25"
+                        stroke-width="2"
+                        d="M1 1l6 4 6-4"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <!-- END Long break time input -->
+            </div>
+            <!-- END Settings time input -->
+
+            <!-- Fonts -->
+            <div class="settings__fonts-wrapper">
+              <h4 class="settings__fonts-heading">Font</h4>
+              <div class="settings__fonts">
+                <div class="radio">
+                  <label class="radio-container">
+                    <input
+                      type="radio"
+                      class="settings__font-picker"
+                      name="fonts"
+                      value="kumbh-sans"
+                    />
+                    <span class="font-checkmark font" id="kumbh-sans"></span>
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label class="radio-container">
+                    <input
+                      type="radio"
+                      class="settings__font-picker"
+                      name="fonts"
+                      value="roboto-slab"
+                    />
+                    <span class="font-checkmark font" id="roboto-slab"></span>
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label class="radio-container">
+                    <input
+                      type="radio"
+                      class="settings__font-picker"
+                      name="fonts"
+                      value="space-mono"
+                    />
+                    <span class="font-checkmark font" id="space-mono"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!-- Colors -->
+            <div class="settings__colors-wrapper">
+              <h4 class="settings__colors-heading">Color</h4>
+              <div class="settings__colors">
+                <div class="radio">
+                  <label class="radio-container" for="red">
+                    <input
+                      type="radio"
+                      class="settings__color-swatch"
+                      id="red"
+                      name="colors"
+                      value="red"
+                    />
+                    <span class="color-checkmark red"></span>
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label class="radio-container">
+                    <input
+                      type="radio"
+                      class="settings__color-swatch"
+                      id="teal"
+                      name="colors"
+                      value="teal"
+                    />
+                    <span class="color-checkmark teal"></span>
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label class="radio-container">
+                    <input
+                      type="radio"
+                      class="settings__color-swatch"
+                      id="purple"
+                      name="colors"
+                      value="purple"
+                    />
+                    <span class="color-checkmark purple"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="settings__apply-btn" id="apply" aria-label="apply">
+          Apply
+        </button>
+      </div>
+    </main>
+
+    <script src="./index.js"></script>
+  </body>
 </html>

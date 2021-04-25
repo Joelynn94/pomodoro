@@ -12,9 +12,9 @@
   --robotoslab-font: 'Roboto Slab', serif;
   --spacemono-font: 'Space Mono', monospace;
 
-  --select-border: var(--light-accent);
-  --select-focus: var(--primary-red);
-  --select-arrow: var(--select-border);
+  --input-border: var(--light-accent);
+  --input-focus: var(--primary-red);
+  --input-arrow: var(--input-border);
 }
 
 /**********************
@@ -103,18 +103,16 @@ button:hover {
 }
 
 /**********************
-  CUSTOM SELECT STYLES
+  CUSTOM INPUT STYLES
 ***********************/
-select {
+input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 
   background-color: transparent;
-
-  outline: none;
   border: none;
-  padding: 0.5rem;
+  padding: 10px;
   margin: 0;
   width: 100%;
   font-family: inherit;
@@ -124,7 +122,7 @@ select {
   line-height: inherit;
 }
 
-.settings__set-time--select {
+.settings__set-time--input {
   border: none;
   border-radius: 5px;
   font-family: Helvetica, sans-serif;
@@ -141,9 +139,9 @@ select {
   align-items: center;
 }
 
-.settings__set-time--select:hover,
-.settings__set-time--select:focus,
-.settings__set-time--select:active {
+.settings__set-time--input:hover,
+.settings__set-time--input:focus,
+.settings__set-time--input:active {
   cursor: pointer;
   stroke: var(--dark-accent);
 }
@@ -170,20 +168,11 @@ select {
   padding: 0;
 }
 
-select option {
-  background: var(--light-accent);
-  color: var(--dark-accent);
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
-}
-
 /**********************
-  CUSTOM CHECKBOX STYLES
+  CUSTOM RADIO STYLES
 ***********************/
-/* Checkbox border on hover */
-.checkbox {
+/* radio border on hover */
+.radio {
   width: 44px;
   height: 44px;
   padding: 0.15rem;
@@ -194,26 +183,26 @@ select option {
   justify-content: center;
 }
 
-.checkbox:hover {
+.radio:hover {
   border: 1px solid var(--light-accent);
 }
 
 /* Customize the label (the container) */
-.checkbox-container {
+.radio-container {
   position: absolute;
   top: 10%;
   left: 10%;
   transform: translate(-50%, -50%);
   cursor: pointer;
   font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  -webkit-user-input: none;
+  -moz-user-input: none;
+  -ms-user-input: none;
+  user-input: none;
 }
 
-/* Hide the browser's default checkbox */
-.checkbox-container input {
+/* Hide the browser's default radio */
+.radio-container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -221,7 +210,7 @@ select option {
   width: 0;
 }
 
-/* Create a custom checkbox */
+/* Create a custom radio */
 .color-checkmark,
 .font-checkmark {
   position: absolute;
@@ -252,18 +241,23 @@ select option {
   transform: translate(-50%, -50%);
 }
 
+input[type='radio']:focus {
+  outline: 3px solid paleturquoise;
+  outline-offset: 2px;
+}
+
 /* Show the color-checkmark when checked */
-.checkbox-container input:checked ~ .color-checkmark:after {
+.radio-container input:checked ~ .color-checkmark:after {
   display: block;
 }
 
-.checkbox-container input:checked ~ .font-checkmark {
+.radio-container input:checked ~ .font-checkmark {
   background-color: var(--dark-background);
   color: var(--light-accent);
 }
 
 /* Style the color-checkmark/indicator */
-.checkbox-container .color-checkmark:after {
+.radio-container .color-checkmark:after {
   left: 14px;
   top: 9px;
   width: 5px;
@@ -454,7 +448,6 @@ select option {
   left: 50%;
   width: 100%;
   max-width: 600px;
-  height: 530px;
   /* Puts the modal box in the middle */
   transform: translate(-50%, -50%);
 }
@@ -474,36 +467,61 @@ select option {
 .settings__body-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 20px 30px;
-}
-
-.settings__body-wrapper h4 {
-  margin-bottom: 1rem;
+  padding: 24px 30px;
 }
 
 .settings__set-time {
   text-align: left;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 0.5rem;
+  grid-template-columns: 1fr;
+  gap: 22px;
   align-items: center;
-  padding-bottom: 1rem;
+  padding-bottom: 26px;
+  margin-top: 26px;
   border-bottom: 1px solid #e3e1e1;
   color: #82848a;
+}
+
+@media (min-width: 768px) {
+  .settings__set-time {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .input-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
 }
 
 .settings__fonts-wrapper,
 .settings__colors-wrapper {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.5rem;
+  gap: 1rem;
   align-items: center;
   justify-items: center;
   padding-bottom: 1rem;
   border-bottom: 1px solid #e3e1e1;
   color: #82848a;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .settings__fonts-wrapper,
+  .settings__colors-wrapper {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
 }
 
 .settings__colors-wrapper {
@@ -524,10 +542,16 @@ select option {
 .settings__apply-btn {
   z-index: 5000;
   position: absolute;
-  bottom: 16%;
+  bottom: 12%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--primary-red);
   color: var(--light-accent);
   padding: 0.75rem 2.75rem;
+}
+
+@media (min-width: 768px) {
+  .settings__apply-btn {
+    bottom: 21%;
+  }
 }
