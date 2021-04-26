@@ -3,6 +3,10 @@ const settingsCloseBtn = document.querySelector('#settings__close-btn');
 const settingsModal = document.querySelector('#js-settings__modal');
 const timerDisplay = document.querySelector('.min-sec');
 
+const inputNumbers = document.querySelectorAll('.settings__set-time--input');
+const incrementSvgs = document.querySelectorAll('.up-arrow');
+const decrementSvg = document.querySelectorAll('.down-arrow');
+
 // Open modal on the settings button click
 settingsToggle.addEventListener('click', () => {
   // add the class 'show-modal' which changes the display property
@@ -70,3 +74,13 @@ const renderTime = () => {
 };
 
 renderTime();
+
+const getInputValue = (e) => {
+  const { name, value } = e.target;
+
+  return {
+    [name]: value,
+  };
+};
+
+console.log(inputNumbers);
