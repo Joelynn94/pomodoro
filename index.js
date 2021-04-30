@@ -3,9 +3,21 @@ const settingsCloseBtn = document.querySelector('#settings__close-btn');
 const settingsModal = document.querySelector('#js-settings__modal');
 const timerDisplay = document.querySelector('.min-sec');
 
-const inputNumbers = document.querySelectorAll('.settings__set-time--input');
-const incrementSvgs = document.querySelectorAll('.up-arrow');
-const decrementSvg = document.querySelectorAll('.down-arrow');
+// Modal inputs
+const pomodoroInput = document.querySelector('#js-settings__modal #pomodoro');
+const shortBreakInput = document.querySelector(
+  '#js-settings__modal #short-break'
+);
+const longBreakInput = document.querySelector(
+  '#js-settings__modal #long-break'
+);
+// Increase and Decrease buttons
+const jsIncreasePomodoro = document.querySelector('#jsIncreasePomodoro');
+const jsDecreasePomodoro = document.querySelector('#jsDecreasePomodoro');
+const jsIncreaseShortBreak = document.querySelector('#jsIncreaseShortBreak');
+const jsDecreaseShortBreak = document.querySelector('#jsDecreaseShortBreak');
+const jsIncreaseLongBreak = document.querySelector('#jsIncreaseLongBreak');
+const jsDecreaseLongBreak = document.querySelector('#jsDecreaseLongBreak');
 
 // Open modal on the settings button click
 settingsToggle.addEventListener('click', () => {
@@ -27,6 +39,49 @@ window.addEventListener('click', (event) => {
     ? settingsModal.classList.remove('show-modal')
     : false;
 });
+
+// setup function to check in the input value is greater than 90 (minutes)
+function setMaxInputValue(input) {
+  input.addEventListener('keyup', (e) => {
+    if (e.target.value > 90) {
+      input.value = 90;
+      console.log("Can't enter a number greater than 90");
+    }
+  });
+}
+// call on all of the inputs
+setMaxInputValue(pomodoroInput);
+setMaxInputValue(shortBreakInput);
+setMaxInputValue(longBreakInput);
+
+// setup function to increase an input value
+function increaseInputValue(input, button) {
+  button.addEventListener('click', () => {
+    // keep the value going higher than 90 minutes
+    if (input.value < 90) {
+      return input.value++;
+    }
+    return;
+  });
+}
+// call on all of the increase buttons
+increaseInputValue(pomodoroInput, jsIncreasePomodoro);
+increaseInputValue(shortBreakInput, jsIncreaseShortBreak);
+increaseInputValue(longBreakInput, jsIncreaseLongBreak);
+
+// setup function to decrease an input value
+function decreaseInputValue(input, button) {
+  button.addEventListener('click', () => {
+    // keep the value from going below 0
+    if (input.value > 0) {
+      input.value--;
+    }
+  });
+}
+// call on all of the increase buttons
+decreaseInputValue(pomodoroInput, jsDecreasePomodoro);
+decreaseInputValue(shortBreakInput, jsDecreaseShortBreak);
+decreaseInputValue(longBreakInput, jsDecreaseLongBreak);
 
 // set the total seconds
 let totalSeconds = 500;
@@ -75,12 +130,9 @@ const renderTime = () => {
 
 renderTime();
 
-const getInputValue = (e) => {
-  const { name, value } = e.target;
-
-  return {
-    [name]: value,
-  };
-};
-
-console.log(inputNumbers);
+// const timer = {
+//   started: false,
+//   pomodoro: 25,
+//   shortBreak: 5,
+//   longBreak: 15
+// }

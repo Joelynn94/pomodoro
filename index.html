@@ -112,24 +112,28 @@
               <div class="input-grid">
                 <label for="pomodoro">Pomodoro</label>
                 <div class="settings__set-time--input">
-                  <input class="input-number" min="0" step="5" type="number" name="pomodoro" id="pomodoro">
+                  <input class="input-number" min="0" max="90" type="number" name="pomodoro" id="pomodoro">
                   </input>
-                  <div class="up-down-svg">
-                    <svg
+                  <div class="settings__controls">
+                    <button id="jsIncreasePomodoro">
+                      <svg
                       class="up-arrow"
                       xmlns="http://www.w3.org/2000/svg"
                       width="14"
                       height="7"
-                    >
-                      <path
-                        id="svg"
-                        fill="none"
-                        stroke="#1E213F"
-                        stroke-width="2"
-                        d="M1 6l6-4 6 4"
-                      />
-                    </svg>
-                    <svg
+                      >
+                        <path
+                          id="svg"
+                          fill="none"
+                          stroke="#1E213F"
+                          stroke-width="2"
+                          d="M1 6l6-4 6 4"
+                        />
+                      </svg>
+                    </button>
+
+                    <button id="jsDecreasePomodoro">
+                      <svg
                       class="down-arrow"
                       xmlns="http://www.w3.org/2000/svg"
                       width="14"
@@ -144,6 +148,7 @@
                         d="M1 1l6 4 6-4"
                       />
                     </svg>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -152,35 +157,40 @@
               <div class="input-grid">
                 <label for="short-break">Short break</label>
                 <div class="settings__set-time--input">
-                  <input class="input-number" min="0" step="5" type="number" name="short-break" id="short-break">
+                  <input class="input-number" min="0" type="number" name="short-break" id="short-break">
                   </input>
-                  <div class="up-down-svg">
-                    <svg
-                    class="up-arrow"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="7"
-                  >
-                    <path
-                      fill="none"
-                      stroke="#1E213F"
-                      stroke-width="2"
-                      d="M1 6l6-4 6 4"
-                    />
-                  </svg>
-                  <svg
-                    class="down-arrow"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="7"
-                  >
-                    <path
-                      fill="none"
-                      stroke="#1E213F"
-                      stroke-width="2"
-                      d="M1 1l6 4 6-4"
-                    />
-                  </svg>
+                  <div class="settings__controls">
+                    <button id="jsIncreaseShortBreak">
+                      <svg
+                        class="up-arrow"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="7"
+                      >
+                      <path
+                        fill="none"
+                        stroke="#1E213F"
+                        stroke-width="2"
+                        d="M1 6l6-4 6 4"
+                      />
+                      </svg>
+                    </button>
+
+                    <button id="jsDecreaseShortBreak">
+                      <svg
+                        class="down-arrow"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="7"
+                      >
+                        <path
+                          fill="none"
+                          stroke="#1E213F"
+                          stroke-width="2"
+                          d="M1 1l6 4 6-4"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -189,35 +199,40 @@
               <div class="input-grid">
                 <label for="long-break">Long break</label>
                 <div class="settings__set-time--input">
-                  <input class="input-number" min="0" step="5" type="number" name="long-break" id="long-break">
+                  <input class="input-number" min="0" type="number" name="long-break" id="long-break">
                   </input>
-                  <div class="up-down-svg">
-                    <svg
-                      class="up-arrow"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="14"
-                      height="7"
-                    >
-                      <path
-                        fill="none"
-                        stroke="#1E213F"
-                        stroke-width="2"
-                        d="M1 6l6-4 6 4"
-                      />
-                    </svg>
-                    <svg
-                      class="down-arrow"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="14"
-                      height="7"
-                    >
-                      <path
-                        fill="none"
-                        stroke="#1E213F"
-                        stroke-width="2"
-                        d="M1 1l6 4 6-4"
-                      />
-                    </svg>
+                  <div class="settings__controls">
+                    <button id="jsIncreaseLongBreak">
+                      <svg
+                        class="up-arrow"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="7"
+                      >
+                        <path
+                          fill="none"
+                          stroke="#1E213F"
+                          stroke-width="2"
+                          d="M1 6l6-4 6 4"
+                        />
+                      </svg>
+                    </button>
+
+                    <button id="jsDecreaseLongBreak">
+                      <svg
+                        class="down-arrow"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="7"
+                      >
+                        <path
+                          fill="none"
+                          stroke="#1E213F"
+                          stroke-width="2"
+                          d="M1 1l6 4 6-4"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
               </div>
