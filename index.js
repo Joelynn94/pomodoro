@@ -15,9 +15,17 @@ const primaryTeal = getComputedStyle(root)
 const primaryPurple = getComputedStyle(root)
   .getPropertyValue('--primary-purple')
   .trim();
-const themePrimary = getComputedStyle(root)
-  .getPropertyValue('--set-theme-primary')
+const fontKumbhSans = getComputedStyle(root)
+  .getPropertyValue('--kumbhsans-font')
   .trim();
+const fontRobotoSlab = getComputedStyle(root)
+  .getPropertyValue('--robotoslab-font')
+  .trim();
+const fontSpaceMono = getComputedStyle(root)
+  .getPropertyValue('--spacemono-font')
+  .trim();
+
+console.log(fontKumbhSans);
 
 // Modal inputs
 const pomodoroInput = document.querySelector('#js-settings__modal #pomodoro');
@@ -37,15 +45,20 @@ const jsIncreaseLongBreak = document.querySelector('#jsIncreaseLongBreak');
 const jsDecreaseLongBreak = document.querySelector('#jsDecreaseLongBreak');
 
 // Modal font buttons
-const fontKumbhSans = document.querySelector('#kumbh-sans');
-const fontRobotoSlab = document.querySelector('#roboto-slab');
-const fontSpaceMono = document.querySelector('#space-mono');
+const fontSettings = document.getElementsByName('fonts');
 // Modal color buttons
 const themeRed = document.querySelector('#primary-red');
 const themeTeal = document.querySelector('#primary-teal');
 const themePurple = document.querySelector('#primary-purple');
+const colorSettings = document.getElementsByName('colors');
 // Modal apply btn
 const applyBtn = document.querySelector('#apply');
+
+const userPreferences = {
+  theme: localStorage.getItem('userThemeColor'),
+  font: localStorage.getItem('userFontStyle'),
+};
+console.log(userPreferences);
 
 // function to get the theme from storage
 function getThemeFromStorage(theme) {
@@ -86,26 +99,60 @@ function setTheme(theme) {
   }
 }
 
-themeRed.addEventListener('click', (e) => {
-  if (e.target.value === '#f87070') {
-    console.log('Theme set to red');
-    setTheme(themeRed);
+function setFont(font) {
+  console.log(`font value: ${font.value}`);
+  // switch to check the font value
+  switch (font) {
+    case fontKumbhSans:
+      getFontFromStorage(fontKumbhSans);
+      return setFontInStorage(fontKumbhSans);
+    case fontRobotoSlab:
+      getFontFromStorage(fontRobotoSlab);
+      return setFontInStorage(fontRobotoSlab);
+    case fontSpaceMono:
+      getFontFromStorage(fontSpaceMono);
+      return setFontInStorage(fontSpaceMono);
+    default:
+      return font;
   }
+}
+
+colorSettings.forEach((color) => {
+  color.addEventListener('click', (e) => {
+    if (e.target.value === '#f87070') {
+      console.log('Theme set to red');
+      setTheme(themeRed);
+    }
+    if (e.target.value === '#70f3f8') {
+      console.log('Theme set to teal');
+      setTheme(themeTeal);
+    }
+    if (e.target.value === '#d881f8') {
+      console.log('Theme set to purple');
+      setTheme(themePurple);
+    }
+  });
 });
 
-themeTeal.addEventListener('click', (e) => {
-  if (e.target.value === '#70f3f8') {
-    console.log('Theme set to teal');
-    setTheme(themeTeal);
-  }
+fontSettings.forEach((font) => {
+  font.addEventListener('click', (e) => {
+    console.log(e.target.value);
+    if (e.target.value === 'kumbh-sans') {
+      console.log('Font set to kumbh-sans');
+      setFont(fontKumbhSans);
+    }
+    if (e.target.value === 'roboto-slab') {
+      console.log('Font set to roboto-slab');
+      setFont(fontRobotoSlab);
+    }
+    if (e.target.value === 'space-mono') {
+      console.log('Font set to space-mono');
+      setFont(fontSpaceMono);
+    }
+  });
 });
 
-themePurple.addEventListener('click', (e) => {
-  if (e.target.value === '#d881f8') {
-    console.log('Theme set to purple');
-    setTheme(themePurple);
-  }
-});
+applyBtn.addEventListener('click', () => {});
 
 // Open modal on the settings button click
 settingsToggle.addEventListener('click', () => {
