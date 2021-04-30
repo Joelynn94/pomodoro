@@ -3,6 +3,22 @@ const settingsCloseBtn = document.querySelector('#settings__close-btn');
 const settingsModal = document.querySelector('#js-settings__modal');
 const timerDisplay = document.querySelector('.min-sec');
 
+// Get root styles
+const root = document.querySelector(':root');
+// root variable values
+const primaryRed = getComputedStyle(root)
+  .getPropertyValue('--primary-red')
+  .trim();
+const primaryTeal = getComputedStyle(root)
+  .getPropertyValue('--primary-teal')
+  .trim();
+const primaryPurple = getComputedStyle(root)
+  .getPropertyValue('--primary-purple')
+  .trim();
+const themePrimary = getComputedStyle(root)
+  .getPropertyValue('--set-theme-primary')
+  .trim();
+
 // Modal inputs
 const pomodoroInput = document.querySelector('#js-settings__modal #pomodoro');
 const shortBreakInput = document.querySelector(
@@ -11,6 +27,7 @@ const shortBreakInput = document.querySelector(
 const longBreakInput = document.querySelector(
   '#js-settings__modal #long-break'
 );
+
 // Increase and Decrease buttons
 const jsIncreasePomodoro = document.querySelector('#jsIncreasePomodoro');
 const jsDecreasePomodoro = document.querySelector('#jsDecreasePomodoro');
@@ -18,6 +35,77 @@ const jsIncreaseShortBreak = document.querySelector('#jsIncreaseShortBreak');
 const jsDecreaseShortBreak = document.querySelector('#jsDecreaseShortBreak');
 const jsIncreaseLongBreak = document.querySelector('#jsIncreaseLongBreak');
 const jsDecreaseLongBreak = document.querySelector('#jsDecreaseLongBreak');
+
+// Modal font buttons
+const fontKumbhSans = document.querySelector('#kumbh-sans');
+const fontRobotoSlab = document.querySelector('#roboto-slab');
+const fontSpaceMono = document.querySelector('#space-mono');
+// Modal color buttons
+const themeRed = document.querySelector('#primary-red');
+const themeTeal = document.querySelector('#primary-teal');
+const themePurple = document.querySelector('#primary-purple');
+// Modal apply btn
+const applyBtn = document.querySelector('#apply');
+
+// function to get the theme from storage
+function getThemeFromStorage(theme) {
+  document.documentElement.style.setProperty('--set-theme-primary', theme);
+  localStorage.getItem('userThemeColor');
+}
+
+// function to set the theme in storage
+function setThemeInStorage(theme) {
+  localStorage.setItem('userThemeColor', theme);
+}
+
+// function to get the font style from storage
+function getFontFromStorage(font) {
+  document.documentElement.style.setProperty('--set-font-style', font);
+  localStorage.getItem('userFontStyle');
+}
+
+// function to set the font style in storage
+function setFontInStorage(font) {
+  localStorage.setItem('userFontStyle', font);
+}
+
+function setTheme(theme) {
+  // switch to check the theme value
+  switch (theme.value) {
+    case primaryRed:
+      getThemeFromStorage(primaryRed);
+      return setThemeInStorage(primaryRed);
+    case primaryTeal:
+      getThemeFromStorage(primaryTeal);
+      return setThemeInStorage(primaryTeal);
+    case primaryPurple:
+      getThemeFromStorage(primaryPurple);
+      return setThemeInStorage(primaryPurple);
+    default:
+      return theme;
+  }
+}
+
+themeRed.addEventListener('click', (e) => {
+  if (e.target.value === '#f87070') {
+    console.log('Theme set to red');
+    setTheme(themeRed);
+  }
+});
+
+themeTeal.addEventListener('click', (e) => {
+  if (e.target.value === '#70f3f8') {
+    console.log('Theme set to teal');
+    setTheme(themeTeal);
+  }
+});
+
+themePurple.addEventListener('click', (e) => {
+  if (e.target.value === '#d881f8') {
+    console.log('Theme set to purple');
+    setTheme(themePurple);
+  }
+});
 
 // Open modal on the settings button click
 settingsToggle.addEventListener('click', () => {
