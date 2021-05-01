@@ -2,6 +2,7 @@ const settingsToggle = document.querySelector('#js-settings__icon--toggle');
 const settingsCloseBtn = document.querySelector('#settings__close-btn');
 const settingsModal = document.querySelector('#js-settings__modal');
 const timerDisplay = document.querySelector('.min-sec');
+const settingsForm = document.querySelector('#settings__form');
 
 // Get root styles
 const root = document.querySelector(':root');
@@ -57,45 +58,6 @@ localStorage.setItem('userThemeColor', primaryRed);
 document.documentElement.style.setProperty('--set-theme-primary', primaryRed);
 localStorage.setItem('userFontStyle', fontKumbhSans);
 document.documentElement.style.setProperty('--set-font-style', fontKumbhSans);
-
-// function to get the theme from storage
-function getThemeFromStorage(theme) {
-  document.documentElement.style.setProperty('--set-theme-primary', theme);
-  localStorage.getItem('userThemeColor');
-}
-
-// function to set the theme in storage
-function setThemeInStorage(theme) {
-  localStorage.setItem('userThemeColor', theme);
-}
-
-// function to get the font style from storage
-function getFontFromStorage(font) {
-  document.documentElement.style.setProperty('--set-font-style', font);
-  localStorage.getItem('userFontStyle').trim();
-}
-
-// function to set the font style in storage
-function setFontInStorage(font) {
-  localStorage.setItem('userFontStyle', font);
-}
-
-function setTheme(theme) {
-  // switch to check the theme value
-  switch (theme.value) {
-    case primaryRed:
-      getThemeFromStorage(primaryRed);
-      return setThemeInStorage(primaryRed);
-    case primaryTeal:
-      getThemeFromStorage(primaryTeal);
-      return setThemeInStorage(primaryTeal);
-    case primaryPurple:
-      getThemeFromStorage(primaryPurple);
-      return setThemeInStorage(primaryPurple);
-    default:
-      return theme;
-  }
-}
 
 // Open modal on the settings button click
 settingsToggle.addEventListener('click', () => {
@@ -161,54 +123,55 @@ decreaseInputValue(pomodoroInput, jsDecreasePomodoro);
 decreaseInputValue(shortBreakInput, jsDecreaseShortBreak);
 decreaseInputValue(longBreakInput, jsDecreaseLongBreak);
 
-function setFont(font) {
-  // switch to check the font value
-  switch (font) {
-    case fontKumbhSans:
-      getFontFromStorage(fontKumbhSans);
-      return setFontInStorage(fontKumbhSans);
-    case fontRobotoSlab:
-      getFontFromStorage(fontRobotoSlab);
-      return setFontInStorage(fontRobotoSlab);
-    case fontSpaceMono:
-      getFontFromStorage(fontSpaceMono);
-      return setFontInStorage(fontSpaceMono);
-    default:
-      return font;
-  }
+function renderSettingValues() {
+  const preferences = JSON.parse(localStorage.getItem('userPreferences'));
+  console.log(preferences);
+
+  document.documentElement.style.setProperty(
+    '--set-theme-primary',
+    preferences.theme
+  );
+  document.documentElement.style.setProperty(
+    '--set-font-style',
+    preferences.font
+  );
 }
 
-function setSettingValues() {
+function setSettingValues(theme, font) {
   const userPreferences = {
-    theme: localStorage.getItem('userThemeColor').trim(),
-    font: localStorage.getItem('userFontStyle').trim(),
+    theme: theme,
+    font: font,
     pomodoroTime: Number(pomodoroInput.value),
     shortBreak: Number(shortBreakInput.value),
     longBreak: Number(longBreakInput.value),
   };
   localStorage.setItem('userPreferences', JSON.stringify(userPreferences));
+  console.log(userPreferences);
 }
 
-function renderSettingValues() {
-  const preferences = JSON.parse(localStorage.getItem('userPreferences'));
-  console.log(preferences);
+function getCheckedValue(el) {
+  let result = '';
+  for (let i = 0; i < el.length; i++) {
+    el[i].addEventListener('change', (e) => {
+      console.log(el[i].checked);
+      if (e.target.value === el[i].checked) {
+        result = el[i].value;
+        console.log(result);
+      }
+    });
+
+    return result;
+  }
 }
+
+console.log(getCheckedValue());
 
 applyBtn.addEventListener('click', (e) => {
-  setSettingValues();
-  renderSettingValues();
-  if (e.target.value) {
-    console.log('Font set to kumbh-sans');
-    setFont(fontKumbhSans);
-  }
-  if (e.target.value === 'roboto-slab') {
-    console.log('Font set to roboto-slab');
-    setFont(fontRobotoSlab);
-  }
-  if (e.target.value === 'space-mono') {
-    console.log('Font set to space-mono');
-    setFont(fontSpaceMono);
-  }
+  const color = getCheckedValue(colorSettings);
+  const font = getCheckedValue(fontSettings);
+
+  console.log(color, font);
+  setSettingValues(color, font);
 });
 
 // set the total seconds
@@ -257,10 +220,3 @@ const renderTime = () => {
 };
 
 renderTime();
-
-// const timer = {
-//   started: false,
-//   pomodoro: 25,
-//   shortBreak: 5,
-//   longBreak: 15
-// }
