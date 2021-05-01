@@ -51,8 +51,6 @@ const themePurple = document.querySelector('#primary-purple');
 const colorSettings = document.getElementsByName('colors');
 // Modal form
 const settingsForm = document.querySelector('#settings__form');
-// Modal apply btn
-const applyBtn = document.querySelector('#apply');
 
 // Open modal on the settings button click
 settingsToggle.addEventListener('click', () => {
@@ -153,3 +151,25 @@ settingsForm.addEventListener('submit', (e) => {
 
   saveUserPreferences();
 });
+
+function getUserPreferences() {
+  const saved = JSON.parse(localStorage.getItem('userPreferences'));
+
+  console.log(saved);
+
+  if (saved !== null) {
+  } else {
+    const defaultPreferences = {
+      theme: '#f87070',
+      font: 'kumbh-sans',
+      pomodoroTime: 25,
+      shortBreakTime: 5,
+      longBreakTime: 10,
+    };
+
+    console.log(defaultPreferences);
+    localStorage.setItem('userPreferences', JSON.stringify(defaultPreferences));
+  }
+}
+
+getUserPreferences();
