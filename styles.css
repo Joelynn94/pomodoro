@@ -8,9 +8,9 @@
   --dark-accent: #161932;
   --light-accent: #eff1fa;
 
-  --kumbhsans-font: 'Kumbh Sans', sans-serif;
-  --robotoslab-font: 'Roboto Slab', serif;
-  --spacemono-font: 'Space Mono', monospace;
+  --kumbhsans-font: Kumbh Sans, sans-serif;
+  --robotoslab-font: Roboto Slab, serif;
+  --spacemono-font: Space Mono, monospace;
 
   --input-border: var(--light-accent);
   --input-focus: var(--primary-red);
