@@ -108,31 +108,46 @@ decreaseInputValue(shortBreakInput, jsDecreaseShortBreak);
 decreaseInputValue(longBreakInput, jsDecreaseLongBreak);
 
 function saveUserPreferences() {
+  // initialize variables to save data to
   let color = '';
   let font = '';
 
+  // loop over font settings node list
   for (let i = 0; i < fontSettings.length; i++) {
+    // save node list values to variable
     const element = fontSettings[i];
+    // check is an element is checked
     if (element.checked) {
+      // if the element checked is 'kumbh-sans'
       if (element.value === 'kumbh-sans') {
+        // set the font to the CSS value of --kumbhsans-font (from the root styles)
         font = fontKumbhSans;
       }
+      // if the element checked is 'roboto-slab'
       if (element.value === 'roboto-slab') {
+        // set the font to the CSS value of  --robotoslab-font (from the root styles)
         font = fontRobotoSlab;
       }
+      // if the element checked is 'space-mono'
       if (element.value === 'space-mono') {
+        // set the font to the CSS value of --spacemono-font (from the root styles)
         font = fontSpaceMono;
       }
     }
   }
 
+  // loop over color settings node list
   for (let i = 0; i < colorSettings.length; i++) {
+    // save node list values to variable
     const element = colorSettings[i];
+    // check is an element is checked
     if (element.checked) {
+      // set the checked color to the element value
       color = element.value;
     }
   }
 
+  // create the ibject to hold user entered data
   const preferences = {
     theme: color,
     font: font,
@@ -142,28 +157,34 @@ function saveUserPreferences() {
   };
 
   console.log(preferences);
+  // set the preferences object in local storage
   localStorage.setItem('userPreferences', JSON.stringify(preferences));
 }
 
 settingsForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
+  // save the user entered data
   saveUserPreferences();
+  // get the user entered data (without this, the page would need refreshed for changes to take affect)
   getUserPreferences();
 });
 
 function getUserPreferences() {
+  // varible to parse local storage back into an object
   const saved = JSON.parse(localStorage.getItem('userPreferences'));
 
-  console.log(saved);
-
+  // if preferences are in local storage, save the theme and font styles to CSS variables
   if (saved !== null) {
+    // set the CSS variable color
     document.documentElement.style.setProperty(
       '--set-theme-primary',
       saved.theme
     );
+    // set the CSS variable font style
     document.documentElement.style.setProperty('--set-font-style', saved.font);
   } else {
+    // otherwise, set preference default values
     const defaultPreferences = {
       theme: '#f87070',
       font: 'Kumbh Sans, sans-serif',
@@ -171,13 +192,15 @@ function getUserPreferences() {
       shortBreakTime: 5,
       longBreakTime: 10,
     };
-
     localStorage.setItem('userPreferences', JSON.stringify(defaultPreferences));
+    // get the default settings from local storage
     const defaultSaved = JSON.parse(localStorage.getItem('userPreferences'));
+    // set the CSS variable color
     document.documentElement.style.setProperty(
       '--set-theme-primary',
       defaultSaved.theme
     );
+    // set the CSS variable font style
     document.documentElement.style.setProperty(
       '--set-font-style',
       defaultSaved.font
@@ -185,4 +208,5 @@ function getUserPreferences() {
   }
 }
 
+// initialize preferences on page load
 getUserPreferences();
