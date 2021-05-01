@@ -58,6 +58,12 @@ document.documentElement.style.setProperty('--set-theme-primary', primaryRed);
 localStorage.setItem('userFontStyle', fontKumbhSans);
 document.documentElement.style.setProperty('--set-font-style', fontKumbhSans);
 
+const userPreferences = {
+  theme: localStorage.getItem('userThemeColor'),
+  font: localStorage.getItem('userFontStyle'),
+};
+console.log(userPreferences);
+
 // function to get the theme from storage
 function getThemeFromStorage(theme) {
   document.documentElement.style.setProperty('--set-theme-primary', theme);
@@ -72,7 +78,7 @@ function setThemeInStorage(theme) {
 // function to get the font style from storage
 function getFontFromStorage(font) {
   document.documentElement.style.setProperty('--set-font-style', font);
-  localStorage.getItem('userFontStyle').trim();
+  localStorage.getItem('userFontStyle');
 }
 
 // function to set the font style in storage
@@ -96,6 +102,61 @@ function setTheme(theme) {
       return theme;
   }
 }
+
+function setFont(font) {
+  // switch to check the font value
+  switch (font) {
+    case fontKumbhSans:
+      getFontFromStorage(fontKumbhSans);
+      return setFontInStorage(fontKumbhSans);
+    case fontRobotoSlab:
+      getFontFromStorage(fontRobotoSlab);
+      return setFontInStorage(fontRobotoSlab);
+    case fontSpaceMono:
+      getFontFromStorage(fontSpaceMono);
+      return setFontInStorage(fontSpaceMono);
+    default:
+      return font;
+  }
+}
+
+colorSettings.forEach((color) => {
+  color.addEventListener('click', (e) => {
+    if (e.target.value === '#f87070') {
+      themeRed.checked = true;
+      console.log('Theme set to red');
+      setTheme(themeRed);
+    }
+    if (e.target.value === '#70f3f8') {
+      console.log('Theme set to teal');
+      setTheme(themeTeal);
+    }
+    if (e.target.value === '#d881f8') {
+      console.log('Theme set to purple');
+      setTheme(themePurple);
+    }
+  });
+});
+
+fontSettings.forEach((font) => {
+  font.addEventListener('click', (e) => {
+    console.log(e.target.value);
+    if (e.target.value === 'kumbh-sans') {
+      console.log('Font set to kumbh-sans');
+      setFont(fontKumbhSans);
+    }
+    if (e.target.value === 'roboto-slab') {
+      console.log('Font set to roboto-slab');
+      setFont(fontRobotoSlab);
+    }
+    if (e.target.value === 'space-mono') {
+      console.log('Font set to space-mono');
+      setFont(fontSpaceMono);
+    }
+  });
+});
+
+applyBtn.addEventListener('click', () => {});
 
 // Open modal on the settings button click
 settingsToggle.addEventListener('click', () => {
@@ -160,56 +221,6 @@ function decreaseInputValue(input, button) {
 decreaseInputValue(pomodoroInput, jsDecreasePomodoro);
 decreaseInputValue(shortBreakInput, jsDecreaseShortBreak);
 decreaseInputValue(longBreakInput, jsDecreaseLongBreak);
-
-function setFont(font) {
-  // switch to check the font value
-  switch (font) {
-    case fontKumbhSans:
-      getFontFromStorage(fontKumbhSans);
-      return setFontInStorage(fontKumbhSans);
-    case fontRobotoSlab:
-      getFontFromStorage(fontRobotoSlab);
-      return setFontInStorage(fontRobotoSlab);
-    case fontSpaceMono:
-      getFontFromStorage(fontSpaceMono);
-      return setFontInStorage(fontSpaceMono);
-    default:
-      return font;
-  }
-}
-
-function setSettingValues() {
-  const userPreferences = {
-    theme: localStorage.getItem('userThemeColor').trim(),
-    font: localStorage.getItem('userFontStyle').trim(),
-    pomodoroTime: Number(pomodoroInput.value),
-    shortBreak: Number(shortBreakInput.value),
-    longBreak: Number(longBreakInput.value),
-  };
-  localStorage.setItem('userPreferences', JSON.stringify(userPreferences));
-}
-
-function renderSettingValues() {
-  const preferences = JSON.parse(localStorage.getItem('userPreferences'));
-  console.log(preferences);
-}
-
-applyBtn.addEventListener('click', (e) => {
-  setSettingValues();
-  renderSettingValues();
-  if (e.target.value) {
-    console.log('Font set to kumbh-sans');
-    setFont(fontKumbhSans);
-  }
-  if (e.target.value === 'roboto-slab') {
-    console.log('Font set to roboto-slab');
-    setFont(fontRobotoSlab);
-  }
-  if (e.target.value === 'space-mono') {
-    console.log('Font set to space-mono');
-    setFont(fontSpaceMono);
-  }
-});
 
 // set the total seconds
 let totalSeconds = 500;
