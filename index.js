@@ -49,114 +49,10 @@ const themeRed = document.querySelector('#primary-red');
 const themeTeal = document.querySelector('#primary-teal');
 const themePurple = document.querySelector('#primary-purple');
 const colorSettings = document.getElementsByName('colors');
+// Modal form
+const settingsForm = document.querySelector('#settings__form');
 // Modal apply btn
 const applyBtn = document.querySelector('#apply');
-
-// set initial values
-localStorage.setItem('userThemeColor', primaryRed);
-document.documentElement.style.setProperty('--set-theme-primary', primaryRed);
-localStorage.setItem('userFontStyle', fontKumbhSans);
-document.documentElement.style.setProperty('--set-font-style', fontKumbhSans);
-
-const userPreferences = {
-  theme: localStorage.getItem('userThemeColor'),
-  font: localStorage.getItem('userFontStyle'),
-};
-console.log(userPreferences);
-
-// function to get the theme from storage
-function getThemeFromStorage(theme) {
-  document.documentElement.style.setProperty('--set-theme-primary', theme);
-  localStorage.getItem('userThemeColor');
-}
-
-// function to set the theme in storage
-function setThemeInStorage(theme) {
-  localStorage.setItem('userThemeColor', theme);
-}
-
-// function to get the font style from storage
-function getFontFromStorage(font) {
-  document.documentElement.style.setProperty('--set-font-style', font);
-  localStorage.getItem('userFontStyle');
-}
-
-// function to set the font style in storage
-function setFontInStorage(font) {
-  localStorage.setItem('userFontStyle', font);
-}
-
-function setTheme(theme) {
-  // switch to check the theme value
-  switch (theme.value) {
-    case primaryRed:
-      getThemeFromStorage(primaryRed);
-      return setThemeInStorage(primaryRed);
-    case primaryTeal:
-      getThemeFromStorage(primaryTeal);
-      return setThemeInStorage(primaryTeal);
-    case primaryPurple:
-      getThemeFromStorage(primaryPurple);
-      return setThemeInStorage(primaryPurple);
-    default:
-      return theme;
-  }
-}
-
-function setFont(font) {
-  // switch to check the font value
-  switch (font) {
-    case fontKumbhSans:
-      getFontFromStorage(fontKumbhSans);
-      return setFontInStorage(fontKumbhSans);
-    case fontRobotoSlab:
-      getFontFromStorage(fontRobotoSlab);
-      return setFontInStorage(fontRobotoSlab);
-    case fontSpaceMono:
-      getFontFromStorage(fontSpaceMono);
-      return setFontInStorage(fontSpaceMono);
-    default:
-      return font;
-  }
-}
-
-colorSettings.forEach((color) => {
-  color.addEventListener('click', (e) => {
-    if (e.target.value === '#f87070') {
-      themeRed.checked = true;
-      console.log('Theme set to red');
-      setTheme(themeRed);
-    }
-    if (e.target.value === '#70f3f8') {
-      console.log('Theme set to teal');
-      setTheme(themeTeal);
-    }
-    if (e.target.value === '#d881f8') {
-      console.log('Theme set to purple');
-      setTheme(themePurple);
-    }
-  });
-});
-
-fontSettings.forEach((font) => {
-  font.addEventListener('click', (e) => {
-    console.log(e.target.value);
-    if (e.target.value === 'kumbh-sans') {
-      console.log('Font set to kumbh-sans');
-      setFont(fontKumbhSans);
-    }
-    if (e.target.value === 'roboto-slab') {
-      console.log('Font set to roboto-slab');
-      setFont(fontRobotoSlab);
-    }
-    if (e.target.value === 'space-mono') {
-      console.log('Font set to space-mono');
-      setFont(fontSpaceMono);
-    }
-  });
-});
-
-applyBtn.addEventListener('click', () => {});
 
 // Open modal on the settings button click
 settingsToggle.addEventListener('click', () => {
@@ -222,56 +118,38 @@ decreaseInputValue(pomodoroInput, jsDecreasePomodoro);
 decreaseInputValue(shortBreakInput, jsDecreaseShortBreak);
 decreaseInputValue(longBreakInput, jsDecreaseLongBreak);
 
-// set the total seconds
-let totalSeconds = 500;
-// check the seconds elasped
-let secondsElasped = 65;
+function saveUserPreferences() {
+  let color = '';
+  let font = '';
 
-const getFormatedMinutes = () => {
-  // check how many seconds are left
-  let secondsLeft = totalSeconds - secondsElasped;
-  // check remaining minutes by dividing the secondsLeft by 60
-  let minutesLeft = Math.floor(secondsLeft / 60);
-
-  // set the formated mintes
-  let formattedMinutes;
-  // format minutes if less than 10
-  if (minutesLeft < 0) {
-    formattedMinutes = `0${minutesLeft}`;
-  } else {
-    formattedMinutes = minutesLeft;
+  for (let i = 0; i < fontSettings.length; i++) {
+    const element = fontSettings[i];
+    if (element.checked) {
+      font = element.value;
+    }
   }
 
-  console.log(formattedMinutes);
-  return formattedMinutes;
-};
-
-const getFormatedSeconds = () => {
-  // get the remainder seconds
-  let secondsLeft = (totalSeconds - secondsElasped) % 60;
-
-  // set formated seconds
-  let formattedSeconds;
-  // format seconds if less than 10
-  if (secondsLeft < 10) {
-    formattedSeconds = `0${secondsLeft}`;
-  } else {
-    formattedSeconds = secondsLeft;
+  for (let i = 0; i < colorSettings.length; i++) {
+    const element = colorSettings[i];
+    if (element.checked) {
+      color = element.value;
+    }
   }
 
-  console.log(formattedSeconds);
-  return formattedSeconds;
-};
+  const preferences = {
+    theme: color,
+    font: font,
+    pomodoroTime: Number(pomodoroInput.value),
+    shortBreakTime: Number(shortBreakInput.value),
+    longBreakTime: Number(longBreakInput.value),
+  };
 
-const renderTime = () => {
-  timerDisplay.textContent = `${getFormatedMinutes()}:${getFormatedSeconds()}`;
-};
+  console.log(preferences);
+  localStorage.setItem('userPreferences', JSON.stringify(preferences));
+}
 
-renderTime();
+settingsForm.addEventListener('submit', (e) => {
+  e.preventDefault();
 
-// const timer = {
-//   started: false,
-//   pomodoro: 25,
-//   shortBreak: 5,
-//   longBreak: 15
-// }
+  saveUserPreferences();
+});
