@@ -152,7 +152,7 @@ function setSettingValues(theme, font) {
 function getCheckedValue(el) {
   let result = '';
   for (let i = 0; i < el.length; i++) {
-    el[i].addEventListener('change', (e) => {
+    el[i].addEventListener('click', (e) => {
       console.log(el[i].checked);
       if (e.target.value === el[i].checked) {
         result = el[i].value;
@@ -164,9 +164,10 @@ function getCheckedValue(el) {
   }
 }
 
-console.log(getCheckedValue());
+console.log(getCheckedValue(colorSettings));
 
 applyBtn.addEventListener('click', (e) => {
+  e.preventDefault();
   const color = getCheckedValue(colorSettings);
   const font = getCheckedValue(fontSettings);
 
