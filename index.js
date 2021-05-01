@@ -6,15 +6,6 @@ const timerDisplay = document.querySelector('.min-sec');
 // Get root styles
 const root = document.querySelector(':root');
 // root variable values
-const primaryRed = getComputedStyle(root)
-  .getPropertyValue('--primary-red')
-  .trim();
-const primaryTeal = getComputedStyle(root)
-  .getPropertyValue('--primary-teal')
-  .trim();
-const primaryPurple = getComputedStyle(root)
-  .getPropertyValue('--primary-purple')
-  .trim();
 const fontKumbhSans = getComputedStyle(root)
   .getPropertyValue('--kumbhsans-font')
   .trim();
@@ -123,7 +114,15 @@ function saveUserPreferences() {
   for (let i = 0; i < fontSettings.length; i++) {
     const element = fontSettings[i];
     if (element.checked) {
-      font = element.value;
+      if (element.value === 'kumbh-sans') {
+        font = fontKumbhSans;
+      }
+      if (element.value === 'roboto-slab') {
+        font = fontRobotoSlab;
+      }
+      if (element.value === 'space-mono') {
+        font = fontSpaceMono;
+      }
     }
   }
 
@@ -150,6 +149,7 @@ settingsForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   saveUserPreferences();
+  getUserPreferences();
 });
 
 function getUserPreferences() {
@@ -158,18 +158,30 @@ function getUserPreferences() {
   console.log(saved);
 
   if (saved !== null) {
-    saveUserPreferences();
+    document.documentElement.style.setProperty(
+      '--set-theme-primary',
+      saved.theme
+    );
+    document.documentElement.style.setProperty('--set-font-style', saved.font);
   } else {
     const defaultPreferences = {
       theme: '#f87070',
-      font: 'kumbh-sans',
+      font: 'Kumbh Sans, sans-serif',
       pomodoroTime: 25,
       shortBreakTime: 5,
       longBreakTime: 10,
     };
 
-    console.log(defaultPreferences);
     localStorage.setItem('userPreferences', JSON.stringify(defaultPreferences));
+    const defaultSaved = JSON.parse(localStorage.getItem('userPreferences'));
+    document.documentElement.style.setProperty(
+      '--set-theme-primary',
+      defaultSaved.theme
+    );
+    document.documentElement.style.setProperty(
+      '--set-font-style',
+      defaultSaved.font
+    );
   }
 }
 
