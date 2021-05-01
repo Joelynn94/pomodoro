@@ -158,6 +158,7 @@ function getUserPreferences() {
   console.log(saved);
 
   if (saved !== null) {
+    saveUserPreferences();
   } else {
     const defaultPreferences = {
       theme: '#f87070',
