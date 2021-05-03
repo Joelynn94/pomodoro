@@ -45,6 +45,7 @@ const themePurple = document.querySelector('#primary-purple');
 const colorSettings = document.getElementsByName('colors');
 // Modal form
 const settingsForm = document.querySelector('#settings__form');
+const applyBtn = document.querySelector('#apply-btn');
 
 controlBtns.forEach((btn) => {
   btn.addEventListener('click', (e) => {
@@ -72,6 +73,12 @@ settingsToggle.addEventListener('click', () => {
 
 // Close modal on the X icon click
 settingsCloseBtn.addEventListener('click', () => {
+  // remove the class 'show-modal' which changes the display property
+  settingsModal.classList.remove('show-modal');
+});
+
+// Apply button
+applyBtn.addEventListener('click', (e) => {
   // remove the class 'show-modal' which changes the display property
   settingsModal.classList.remove('show-modal');
 });
@@ -189,8 +196,6 @@ settingsForm.addEventListener('submit', (e) => {
   saveUserPreferences();
   // get the user entered data (without this, the page would need refreshed for changes to take affect)
   getUserPreferences();
-  // remove the class 'show-modal' which changes the display property
-  settingsModal.classList.remove('show-modal');
 });
 
 function getUserPreferences() {
