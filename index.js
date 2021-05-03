@@ -2,6 +2,9 @@ const settingsToggle = document.querySelector('#js-settings__icon--toggle');
 const settingsCloseBtn = document.querySelector('#settings__close-btn');
 const settingsModal = document.querySelector('#js-settings__modal');
 const timerDisplay = document.querySelector('.min-sec');
+// Control buttons
+const controlDiv = document.querySelector('.control__buttons');
+const controlBtns = controlDiv.querySelectorAll('.btn');
 
 // Get root styles
 const root = document.querySelector(':root');
@@ -42,6 +45,24 @@ const themePurple = document.querySelector('#primary-purple');
 const colorSettings = document.getElementsByName('colors');
 // Modal form
 const settingsForm = document.querySelector('#settings__form');
+
+controlBtns.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    // gets the clicked button class' btn--state-active'
+    const current = document.getElementsByClassName('btn--state-active');
+
+    // If there's no active class
+    if (current.length > 0) {
+      current[0].className = current[0].className.replace(
+        ' btn--state-active',
+        ''
+      );
+    }
+
+    // add the active class to the current clicked button
+    e.target.classList.add('btn--state-active');
+  });
+});
 
 // Open modal on the settings button click
 settingsToggle.addEventListener('click', () => {

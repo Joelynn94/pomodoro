@@ -473,7 +473,7 @@ input[type='radio']:focus {
   overflow: hidden;
   top: 50%;
   left: 50%;
-  width: 100%;
+  width: 90%;
   max-width: 600px;
   /* Puts the modal box in the middle */
   transform: translate(-50%, -50%);
