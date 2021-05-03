@@ -147,7 +147,7 @@ function saveUserPreferences() {
     }
   }
 
-  // create the ibject to hold user entered data
+  // create the object to hold user entered data
   const preferences = {
     theme: color,
     font: font,
@@ -168,6 +168,8 @@ settingsForm.addEventListener('submit', (e) => {
   saveUserPreferences();
   // get the user entered data (without this, the page would need refreshed for changes to take affect)
   getUserPreferences();
+  // remove the class 'show-modal' which changes the display property
+  settingsModal.classList.remove('show-modal');
 });
 
 function getUserPreferences() {

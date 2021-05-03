@@ -400,7 +400,7 @@ input[type='radio']:focus {
   .timer__time-left {
     font-size: 100px;
     position: absolute;
-    bottom: 50%;
+    bottom: 45%;
     left: 50%;
     transform: translate(-50%, 50%);
   }
@@ -591,18 +591,11 @@ input[type='radio']:focus {
 }
 
 .settings__apply-btn {
-  z-index: 5000;
-  position: absolute;
-  bottom: calc(20% - 120px);
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  position: relative;
   background-color: var(--set-theme-primary);
   color: var(--light-accent);
   padding: 0.75rem 2.75rem;
-}
-
-@media (min-width: 768px) {
-  .settings__apply-btn {
-    bottom: calc(34% - 120px);
-  }
 }
