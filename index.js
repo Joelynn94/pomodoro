@@ -2,6 +2,8 @@ const settingsToggle = document.querySelector('#js-settings__icon--toggle');
 const settingsCloseBtn = document.querySelector('#settings__close-btn');
 const settingsModal = document.querySelector('#js-settings__modal');
 const timerDisplay = document.querySelector('.min-sec');
+const startBtn = document.querySelector('#start');
+const endTimeEl = document.querySelector('#end-time');
 // Control buttons
 const controlDiv = document.querySelector('.control__buttons');
 const controlBtns = controlDiv.querySelectorAll('.btn');
@@ -46,24 +48,6 @@ const colorSettings = document.getElementsByName('colors');
 // Modal form
 const settingsForm = document.querySelector('#settings__form');
 const applyBtn = document.querySelector('#apply-btn');
-
-controlBtns.forEach((btn) => {
-  btn.addEventListener('click', (e) => {
-    // gets the clicked button class' btn--state-active'
-    const current = document.getElementsByClassName('btn--state-active');
-
-    // If there's no active class
-    if (current.length > 0) {
-      current[0].className = current[0].className.replace(
-        ' btn--state-active',
-        ''
-      );
-    }
-
-    // add the active class to the current clicked button
-    e.target.classList.add('btn--state-active');
-  });
-});
 
 // Open modal on the settings button click
 settingsToggle.addEventListener('click', () => {
@@ -179,9 +163,9 @@ function saveUserPreferences() {
   const preferences = {
     theme: color,
     font: font,
-    pomodoroTime: Number(pomodoroInput.value),
-    shortBreakTime: Number(shortBreakInput.value),
-    longBreakTime: Number(longBreakInput.value),
+    pomodoroTime: Number(pomodoroInput.value * 60),
+    shortBreakTime: Number(shortBreakInput.value * 60),
+    longBreakTime: Number(longBreakInput.value * 60),
   };
 
   console.log(preferences);
@@ -191,6 +175,8 @@ function saveUserPreferences() {
 
 settingsForm.addEventListener('submit', (e) => {
   e.preventDefault();
+  // clear any existing timers
+  clearInterval(countdown);
 
   // save the user entered data
   saveUserPreferences();
@@ -211,14 +197,15 @@ function getUserPreferences() {
     );
     // set the CSS variable font style
     document.documentElement.style.setProperty('--set-font-style', saved.font);
+    renderTime(saved.pomodoroTime);
   } else {
     // otherwise, set preference default values
     const defaultPreferences = {
       theme: '#f87070',
       font: 'Kumbh Sans, sans-serif',
-      pomodoroTime: 25,
-      shortBreakTime: 5,
-      longBreakTime: 10,
+      pomodoroTime: 1500,
+      shortBreakTime: 300,
+      longBreakTime: 600,
     };
     localStorage.setItem('userPreferences', JSON.stringify(defaultPreferences));
     // get the default settings from local storage
@@ -238,3 +225,126 @@ function getUserPreferences() {
 
 // initialize preferences on page load
 getUserPreferences();
+
+function renderTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const secondsLeft = seconds % 60;
+  const adjustedSeconds = secondsLeft < 10 ? '0' : '';
+  const display = `${minutes}:${adjustedSeconds}${secondsLeft}`;
+  timerDisplay.textContent = display;
+}
+
+function renderEndTime(timestamp) {
+  const end = new Date(timestamp);
+  const hour = end.getHours();
+  const adjustedHour = hour > 12 ? hour - 12 : hour;
+  const minutes = end.getMinutes();
+  const adjustedMinutes = minutes < 10 ? '0' : '';
+  endTimeEl.textContent = `Be back at ${adjustedHour}:${adjustedMinutes}${minutes}`;
+}
+
+// set variable to clear interval with
+let countdown;
+
+function timer(seconds) {
+  // clear any existing timers
+  clearInterval(countdown);
+
+  const now = Date.now();
+  const then = now + seconds * 1000;
+
+  renderTime(seconds);
+  renderEndTime(then);
+
+  countdown = setInterval(() => {
+    const secondsLeft = Math.round((then - Date.now()) / 1000);
+
+    if (secondsLeft < 0) {
+      clearInterval(countdown);
+      return;
+    }
+    renderTime(secondsLeft);
+  }, 1000);
+}
+
+startBtn.addEventListener('click', (e) => {
+  clearInterval(countdown);
+  if (e.target.id === 'start') {
+    startBtn.textContent = 'Stop';
+  }
+  // get the saved settings from local storage
+  const settingsObj = JSON.parse(localStorage.getItem('userPreferences'));
+  // gets the clicked button class' btn--state-active'
+  const current = document.getElementsByClassName('btn--state-active');
+
+  if (current[0].id === 'pomodoro') {
+    renderTime(settingsObj.pomodoroTime);
+    timer(settingsObj.pomodoroTime);
+  } else if (current[0].id === 'short-break') {
+    renderTime(settingsObj.shortBreakTime);
+    timer(settingsObj.shortBreakTime);
+  } else {
+    renderTime(settingsObj.longBreakTime);
+    timer(settingsObj.longBreakTime);
+  }
+});
+
+function btnTimerControl(e) {
+  // clear any existing timers
+  clearInterval(countdown);
+  // get the saved settings from local storage
+  const settingsObj = JSON.parse(localStorage.getItem('userPreferences'));
+
+  // gets the clicked button class' btn--state-active'
+  const current = document.getElementsByClassName('btn--state-active');
+
+  // If there's no active class
+  if (current.length > 0) {
+    current[0].className = current[0].className.replace(
+      ' btn--state-active',
+      ''
+    );
+  }
+
+  // add the active class to the current clicked button
+  e.target.classList.add('btn--state-active');
+
+  if (current[0].id === 'pomodoro') {
+    renderTime(settingsObj.pomodoroTime);
+  } else if (current[0].id === 'short-break') {
+    renderTime(settingsObj.shortBreakTime);
+  } else {
+    renderTime(settingsObj.longBreakTime);
+  }
+}
+
+controlBtns.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    btnTimerControl(e);
+  });
+});
+
+settingsForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  // clear any existing timers
+  clearInterval(countdown);
+
+  // save the user entered data
+  saveUserPreferences();
+  // get the user entered data (without this, the page would need refreshed for changes to take affect)
+  getUserPreferences();
+
+  // get the saved settings from local storage
+  const settingsObj = JSON.parse(localStorage.getItem('userPreferences'));
+
+  // gets the clicked button class' btn--state-active'
+  const current = document.getElementsByClassName('btn--state-active');
+
+  if (current[0].id === 'pomodoro') {
+    renderTime(settingsObj.pomodoroTime);
+  } else if (current[0].id === 'short-break') {
+    renderTime(settingsObj.shortBreakTime);
+  } else {
+    renderTime(settingsObj.longBreakTime);
+  }
+});
