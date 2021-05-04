@@ -4,9 +4,20 @@ const settingsModal = document.querySelector('#js-settings__modal');
 const timerDisplay = document.querySelector('.min-sec');
 const startBtn = document.querySelector('#start');
 const endTimeEl = document.querySelector('#end-time');
+const circleSvg = document.querySelector('.timer__path-elapsed');
+
 // Control buttons
 const controlDiv = document.querySelector('.control__buttons');
 const controlBtns = controlDiv.querySelectorAll('.btn');
+
+// const radius = circleSvg.r.baseVal.value;
+// const circumference = radius * 2 * Math.PI;
+// circleSvg.style.strokeDasharray = `${circumference}`;
+// circleSvg.style.strokeDashoffset = `${circumference}`;
+
+// function setProgress(percent) {
+//   circleSvg.style.strokeDashoffset = radius + 1;
+// }
 
 // Get root styles
 const root = document.querySelector(':root');
@@ -232,6 +243,7 @@ function renderTime(seconds) {
   const adjustedSeconds = secondsLeft < 10 ? '0' : '';
   const display = `${minutes}:${adjustedSeconds}${secondsLeft}`;
   timerDisplay.textContent = display;
+  // setProgress((seconds - secondsLeft) / seconds);
 }
 
 function renderEndTime(timestamp) {
@@ -269,9 +281,6 @@ function timer(seconds) {
 
 startBtn.addEventListener('click', (e) => {
   clearInterval(countdown);
-  if (e.target.id === 'start') {
-    startBtn.textContent = 'Stop';
-  }
   // get the saved settings from local storage
   const settingsObj = JSON.parse(localStorage.getItem('userPreferences'));
   // gets the clicked button class' btn--state-active'

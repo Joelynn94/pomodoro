@@ -387,6 +387,9 @@ input[type='radio']:focus {
 .timer__path-elapsed {
   stroke-width: 4px;
   stroke: var(--set-theme-primary);
+  stroke-dasharray: 0;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
 }
 
 .timer__time-left {
