@@ -10,15 +10,6 @@ const circleSvg = document.querySelector('.timer__path-elapsed');
 const controlDiv = document.querySelector('.control__buttons');
 const controlBtns = controlDiv.querySelectorAll('.btn');
 
-// const radius = circleSvg.r.baseVal.value;
-// const circumference = radius * 2 * Math.PI;
-// circleSvg.style.strokeDasharray = `${circumference}`;
-// circleSvg.style.strokeDashoffset = `${circumference}`;
-
-// function setProgress(percent) {
-//   circleSvg.style.strokeDashoffset = radius + 1;
-// }
-
 // Get root styles
 const root = document.querySelector(':root');
 // root variable values
@@ -237,13 +228,26 @@ function getUserPreferences() {
 // initialize preferences on page load
 getUserPreferences();
 
+// get circle radius value
+const radius = circleSvg.r.baseVal.value;
+// set the circumference value of the circle
+let circumference = radius * 2 * Math.PI;
+console.log(circumference);
+
+circleSvg.style.strokeDasharray = circumference;
+
+function setProgress(percent) {
+  // calculate the percentage of time left
+  circleSvg.style.strokeDashoffset =
+    circumference - (percent / 100) * circumference;
+}
+
 function renderTime(seconds) {
   const minutes = Math.floor(seconds / 60);
   const secondsLeft = seconds % 60;
   const adjustedSeconds = secondsLeft < 10 ? '0' : '';
   const display = `${minutes}:${adjustedSeconds}${secondsLeft}`;
   timerDisplay.textContent = display;
-  // setProgress((seconds - secondsLeft) / seconds);
 }
 
 function renderEndTime(timestamp) {
@@ -275,6 +279,8 @@ function timer(seconds) {
       clearInterval(countdown);
       return;
     }
+    // making the remaing time into a percent friendly value (ex. 98, 97, 96)
+    setProgress((secondsLeft / seconds) * 100);
     renderTime(secondsLeft);
   }, 1000);
 }
