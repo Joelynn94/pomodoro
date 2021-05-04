@@ -367,8 +367,8 @@ input[type='radio']:focus {
 
 @media screen and (min-width: 768px) {
   .timer {
-    width: 500px;
-    height: 500px;
+    max-width: 400px;
+    max-height: 400px;
   }
 }
 
