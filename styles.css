@@ -31,11 +31,7 @@
 h1 {
   font-size: 36px;
   font-weight: 700;
-  line-height: 120px;
-}
-
-.min-sec {
-  font-size: 75px;
+  line-height: 60px;
 }
 
 h2 {
@@ -395,7 +391,7 @@ input[type='radio']:focus {
 
 .timer__time-left {
   position: absolute;
-  top: 0;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, 50%);
 }
@@ -436,6 +432,13 @@ input[type='radio']:focus {
 
 .min-sec {
   margin: 0;
+  font-size: 50px;
+}
+
+@media (min-width: 768px) {
+  .min-sec {
+    font-size: 65px;
+  }
 }
 
 /**********************
