@@ -356,15 +356,15 @@ input[type='radio']:focus {
 
 @media screen and (min-width: 400px) {
   .timer {
-    max-width: 320px;
-    max-height: 320px;
+    width: 320px;
+    height: 320px;
   }
 }
 
 @media screen and (min-width: 768px) {
   .timer {
-    max-width: 425px;
-    max-height: 425px;
+    width: 425px;
+    height: 425px;
   }
 }
 
